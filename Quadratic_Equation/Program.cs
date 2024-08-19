@@ -80,8 +80,8 @@ namespace Quadratic_Equation
             {
                 case ResultTypes.TwoRoots:
                     Console.WriteLine("(D > 0) -- уравнение имеет два корня:");
-                    Console.WriteLine($"x1 = (-b + √D) / (2*a)");
-                    Console.WriteLine($"x2 = (-b - √D) / (2*a)");
+                    Console.WriteLine("x1 = (-b + √D) / (2*a)");
+                    Console.WriteLine("x2 = (-b - √D) / (2*a)");
                     Console.WriteLine();
                     Console.WriteLine($"x1 = {result.X1}");
                     Console.WriteLine($"x2 = {result.X2}");
@@ -90,7 +90,7 @@ namespace Quadratic_Equation
 
                 case ResultTypes.OneRoot:
                     Console.WriteLine("(D == 0) -- уравнение имеет один корень:");
-                    Console.WriteLine($"x = -b / (2*a)");
+                    Console.WriteLine("x = -b / (2*a)");
                     Console.WriteLine($"x = {result.X1}");
 
                     break;
