@@ -111,6 +111,8 @@ namespace Quadratic_Equation
         }
     }
 
+    #region Domain
+
     public class QuadraticEquationCalculator
     {
         public QuadraticEquationResult Calculate(double a, double b, double c)
@@ -189,6 +191,8 @@ namespace Quadratic_Equation
         OneRoot,
         TwoRoots
     }
+
+    #endregion Domain
 
     #endregion QuadraticEquation
 
