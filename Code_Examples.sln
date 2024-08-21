@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quadratic_Equation", "Quadratic_Equation\Quadratic_Equation.csproj", "{69BFB102-64D5-4963-96C5-72F520E85A9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maze", "Maze\Maze.csproj", "{521F245C-9E55-4F8C-A6F8-6E599C647535}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maze_Example", "Maze\Maze_Example.csproj", "{521F245C-9E55-4F8C-A6F8-6E599C647535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
