@@ -72,6 +72,8 @@
 
         public Vector PlayerStart => _playerStart;
 
+        public IReadOnlyList<Vector> Exits => _exits;
+
         #endregion Properties
 
         #region PublicMethods

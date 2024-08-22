@@ -3,6 +3,12 @@ namespace Maze_Example
 {
     public class MazeLoader
     {
+        /// <summary>
+        /// Загрузка карты
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        /// <exception cref="FileNotFoundException"></exception>
         public static Maze Load(string path)
         {
             if (!File.Exists(path))
@@ -68,7 +74,8 @@ namespace Maze_Example
             {
                 for (int column = 0; column < width; column++)
                 {
-                    var destinationRow = InvertRowIndex(row, height);
+                    //var destinationRow = InvertRowIndex(row, height);
+                    var destinationRow = row;
 
                     walls[destinationRow, column] = map[row, column] == MapLegend.Wall;
                 }
@@ -88,7 +95,8 @@ namespace Maze_Example
                 {
                     if (map[row, column] == MapLegend.PlayerStart)
                     {
-                        var destinationRow = InvertRowIndex(row, height);
+                        //var destinationRow = InvertRowIndex(row, height);
+                        var destinationRow = row;
 
                         return new Vector(column, destinationRow);
                     }
@@ -110,7 +118,8 @@ namespace Maze_Example
                 {
                     if (map[row, column] == MapLegend.Exit)
                     {
-                        var destinationRow = InvertRowIndex(row, height);
+                        //var destinationRow = InvertRowIndex(row, height);
+                        var destinationRow = row;
 
                         exits.Add(new Vector(column, destinationRow));
                     }

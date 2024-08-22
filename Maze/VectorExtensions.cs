@@ -17,5 +17,10 @@
         {
             return Vector.Directions.IsValidDirection(vector);
         }
+
+        public static Vector Invert(this Vector vector)
+        {
+            return new Vector(-vector.X, -vector.Y);
+        }
     }
 }
