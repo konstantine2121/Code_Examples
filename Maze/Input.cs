@@ -44,5 +44,34 @@ namespace Maze_Example
         {
             return Console.ReadKey().Key;
         }
+
+        public static bool ReadDialog(string question)
+        {
+            const string error = "Ошибка при вводе ответа.";
+            string yes = ((char)InputConfig.Yes).ToString();
+            string no = ((char)InputConfig.No).ToString();
+            
+            bool value = false;
+            bool correctValue = false;
+
+            do
+            {
+                Console.Write(question);
+                string input = Console.ReadLine();
+                correctValue = input.Equals(yes) || input.Equals(no);
+
+                if (!correctValue)
+                {
+                    Console.WriteLine(error);
+                }
+                else
+                {
+                    value = input.Equals(yes);
+                }
+
+            } while (!correctValue);
+
+            return value;
+        }
     }
 }

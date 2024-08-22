@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Maps\" />
+    <None Update="Maps\Map1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

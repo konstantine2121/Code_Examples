@@ -4,6 +4,7 @@
     {
         private Maze _maze;
         private Player _player;
+        private List<string> _levels;
 
         public void Start()
         {
@@ -14,6 +15,7 @@
 
         public void Load() 
         {
+
         }
 
         public void SwitchToNextMap()
