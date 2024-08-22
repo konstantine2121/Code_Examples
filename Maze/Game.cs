@@ -3,6 +3,7 @@
     public class Game : IDisposable
     {
         private Maze _maze;
+        private Player _player;
 
         public void Start()
         {
@@ -13,6 +14,11 @@
 
         public void Load() 
         {
+        }
+
+        public void SwitchToNextMap()
+        {
+
         }
 
         public void PerformStep() 
@@ -30,11 +36,14 @@
         public void Exit()
         {
             Dispose();
+            Environment.Exit(0);
         }
 
         public void Dispose()
         {
-            
+            _maze.Dispose();
+            _maze = null;
+            _player = null;
         }
     }
 }
