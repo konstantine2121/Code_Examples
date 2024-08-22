@@ -22,13 +22,26 @@
 
         #region Directions
 
-        public static Vector Up => new Vector(0, 1);
+        public static class Directions
+        {
+            public static Vector Up => new Vector(0, 1);
+            
+            public static Vector Down => new Vector(0, -1);
+            
+            public static Vector Left => new Vector(-1, 0);
+            
+            public static Vector Right => new Vector(1, 0);
 
-        public static Vector Down => new Vector(0, -1);
-        
-        public static Vector Left => new Vector(-1, 0);
-        
-        public static Vector Right => new Vector(1, 0);
+            public static IReadOnlyList<Vector> Array => new Vector[]
+            {
+                Up, Down, Left, Right
+            };
+
+            public static bool IsValidDirection(Vector vector)
+            {
+                return Array.Any(direction => direction == vector);
+            }
+        }
 
         #endregion Directions
 

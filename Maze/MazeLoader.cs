@@ -4,7 +4,7 @@ namespace Maze_Example
     public class MazeLoader
     {
         /// <summary>
-        /// Легенда карты
+        /// Легенда карты / Символьные обозначения
         /// </summary>
         public static class MapLegend
         {

@@ -11,30 +11,4 @@ namespace Maze_Example
             Console.WriteLine("Hello, World!");
         }
     }
-
-    public class Game : IDisposable
-    {
-        public void Start()
-        {
-
-        }
-
-        public void Exit()
-        {
-            Dispose();
-        }
-
-        public void Dispose()
-        {
-            
-        }
-    }
-
-    public static class PointExtensions
-    {
-        public static void MoveCursor(this Vector point)
-        {
-            Console.SetCursorPosition(point.X, point.Y);
-        }
-    }
 }

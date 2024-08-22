@@ -1,10 +1,16 @@
 ﻿namespace Maze_Example
 {
-    public class Maze
+    public class Maze : IDisposable
     {
-        private readonly bool[,] _walls;
-        private readonly Vector[] _exits;
-        private Vector _playerStart;
+        #region Fields
+
+        private bool[,] _walls;
+        private Vector[] _exits;
+        private readonly Vector _playerStart;
+
+        #endregion Fields
+
+        #region Ctor
 
         ///<summary>
         /// Карта лабиринта загруженная через <see cref="MazeLoader"/>
@@ -45,25 +51,30 @@
                 throw new InvalidOperationException($"{exits} must contains at least one element");
             }
 
-            if (OutOfBound(playerStart))
+            if (playerStart.OutOfBound(width, height))
             {
                 throw new ArgumentOutOfRangeException($"{playerStart} out of bounds");
             }
 
-            if (exits.Any(OutOfBound))
+            if (exits.Any(exit => exit.OutOfBound(width, height)))
             {
                 throw new ArgumentOutOfRangeException("exit out of bounds");
             }
-
-            bool OutOfBound(Vector vector)
-            {
-                return (vector.X < 0 || vector.Y < 0)
-                    || (vector.X >= width || vector.Y >= height);
-            }
         }
 
+        #endregion Ctor
+
+        #region Properties
+
         public int Width { get; }
+
         public int Height { get; }
+
+        public Vector PlayerStart => _playerStart;
+
+        #endregion Properties
+
+        #region PublicMethods
 
         public bool HasWall(Vector point)
         {
@@ -74,5 +85,18 @@
         {
             return _exits.Any(exit => exit == point);
         }
+
+        public bool OutOfBound(Vector vector)
+        {
+            return vector.OutOfBound(Width, Height);
+        }
+
+        public void Dispose()
+        {
+            _walls = null;
+            _exits = null;
+        }
+
+        #endregion PublicMethods
     }
 }
