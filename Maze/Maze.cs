@@ -1,5 +1,9 @@
-﻿namespace Maze_Example
+﻿using System.Diagnostics;
+using Maze_Example.DebugUtils;
+
+namespace Maze_Example
 {
+    [DebuggerTypeProxy(typeof(MazeDebuggerProxy))]
     public class Maze : IDisposable
     {
         #region Fields

@@ -1,5 +1,8 @@
-﻿namespace Maze_Example
+﻿using System.Diagnostics;
+
+namespace Maze_Example
 {
+    [DebuggerDisplay("X = {X}; Y = {Y}")]
     public struct Vector
     {
         #region Ctors
@@ -17,6 +20,8 @@
         public int X { get; set; }
 
         public int Y { get; set; }
+
+        public static Vector Zero => new Vector(0, 0);
 
         #endregion Properties
 

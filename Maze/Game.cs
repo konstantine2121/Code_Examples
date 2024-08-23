@@ -1,17 +1,27 @@
 ﻿namespace Maze_Example
 {
-    public class Game : IDisposable
+    public partial class Game : IDisposable
     {
         private const string MapsDirectory = "Maps";
         private const string MapExtension = ".txt";
-        private const int MillisecondsTimeout = 2000;
-        private readonly MazeDrawer _drawer = new MazeDrawer();
+        
+        private const int MillisecondsTimeout = 200;
+
+        private MazeDrawer _drawer;
+        private InputHandler _inputHandler;
 
         private Maze _maze;
         private Player _player;
+
         private bool _running = false;
         private string[] _levels;
         private int _levelIndex = -1;
+
+        public Game()
+        {
+            _inputHandler = new InputHandler(this);
+            _drawer = new MazeDrawer();
+        }
 
         public void Start()
         {
@@ -33,9 +43,9 @@
             //run game cycle
             _running = true;
 
-            while (_running) 
+            while (_running)
             {
-                try 
+                try
                 {
                     DrawLevel();
                     PerformStep();
@@ -61,10 +71,10 @@
         /// </summary>
         /// <exception cref="DirectoryNotFoundException"></exception>
         /// <exception cref="InvalidDataException"></exception>
-        public void LoadMaps() 
+        public void LoadMaps()
         {
             var pathToMaps = Path.Combine(Directory.GetCurrentDirectory(), MapsDirectory);
-            
+
             if (!Directory.Exists(pathToMaps))
             {
                 throw new DirectoryNotFoundException($"Указанная папка не найдена '{pathToMaps}'. Проверьте путь в папке с картами");
@@ -74,8 +84,8 @@
             var files = dirInfo.GetFiles();
 
             var maps = files.Where(file => file.Extension.Equals(MapExtension)).Select(file => file.FullName);
-            
-            if (!maps.Any()) 
+
+            if (!maps.Any())
             {
                 throw new InvalidDataException($"Карты не найдены: '{pathToMaps}'");
             }
@@ -83,9 +93,6 @@
             _levels = maps.ToArray();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         /// <exception cref="InvalidOperationException"></exception>
         public void SwitchToNextMap()
         {
@@ -114,7 +121,7 @@
             //          \if hasExitInput (q) -> show exit_dialog, then wait input (y,n) then exit or continue (via return -- without sleep)
             //          \no input -> do nothing
             //
-            //sleep 0,5 sec (500ms)
+            //sleep 0,2 sec (200ms)
 
             if (CheckExit())
             {
@@ -122,7 +129,7 @@
                 return;
             }
 
-            if (HandleInput())
+            if (_inputHandler.HandleInput())
             {
                 return;
             }
@@ -130,87 +137,11 @@
             Thread.Sleep(MillisecondsTimeout);
         }
 
-        #region HandleInput
-
-        private bool HandleInput()
-        {
-            if (!Console.KeyAvailable)
-            {
-                return false;
-            }
-
-            var key = Console.ReadKey(true).Key;
-            
-            if (HandleExit(key))
-            {
-                return true;
-            }
-
-            HandleMovement(key);
-
-            while (Console.KeyAvailable)
-            {
-                Console.ReadKey(true); 
-            }
-
-
-            return false;
-        }
-
-        private bool HandleExit(ConsoleKey key)
-        {
-            if (key.IsExitKey())
-            {
-                MoveCursorUnderMaze();
-                var exit = Input.ReadDialog("Вы хотите выйти? [Y,N]");
-                if (exit)
-                {
-                    _running = false;
-                    Exit();
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-        private void HandleMovement(ConsoleKey key)
-        {
-            if (key.IsMoveKey())
-            {
-                var direction = new Vector();
-
-                switch (key)
-                {
-                    case InputConfig.Move.Up:
-                        direction = Vector.Directions.Down;
-                        break;
-
-                    case InputConfig.Move.Down:
-                        direction = Vector.Directions.Up;
-                        break;
-
-                    case InputConfig.Move.Left:
-                        direction = Vector.Directions.Left;
-                        break;
-
-                    case InputConfig.Move.Right:
-                        direction = Vector.Directions.Right;
-                        break;
-                }
-
-                _player.TryMove(direction, _maze);
-            }
-        }
-
-        #endregion HandleInput
-
         private bool CheckExit()
         {
             if (_maze.IsExit(_player.Position))
             {
-                MoveCursorUnderMaze();
+                _maze.MoveCursorUnderMaze();
 
                 Console.WriteLine("Поздравляю! Вы прошли уровень!");
                 Console.ReadKey();
@@ -229,17 +160,17 @@
 
         public void Dispose()
         {
+            _drawer = null;
+            _inputHandler?.Dispose();
+            _inputHandler = null;
+
             _maze?.Dispose();
             _maze = null;
+
             _player = null;
         }
 
         #region Helpers
-
-        private void MoveCursorUnderMaze()
-        {
-            Console.SetCursorPosition(0, _maze.Height + 1);
-        }
 
         #endregion Helpers
     }

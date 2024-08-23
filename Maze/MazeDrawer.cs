@@ -1,43 +1,57 @@
 ﻿using System.Net.WebSockets;
+using System.Text;
 
 namespace Maze_Example
 {
     internal class MazeDrawer
     {
         private const string Empty = " ";
-        private const string Wall = "#";
-        //private const string Wall = "█";
-        //private const string Exit = "░";
-        private const string Exit = "e";
-        private const string Player = "P";
-        //private const string Player = "☺";
+        private const string Wall = "█";
+        private const string Exit = "░";
+        private const string Player = "@";
 
-        public void Clear()
+        private Vector lastPlayerPosition;
+
+        public void ClearScene()
         {
             Console.Clear();
         }
 
+        public void ClearPlayer()
+        {
+            lastPlayerPosition.SetCursor();
+            Console.Write(Empty);
+        }
+
         public void Draw(Maze maze, Player player) 
         {
-            Clear();
+            ClearPlayer();
             DrawWalls(maze);
             DrawExits(maze);
             DrawPlayer(player);
+            maze.MoveCursorUnderMaze();
         }
 
         private void DrawWalls(Maze maze)
         {
             Console.SetCursorPosition(0, 0);
 
-            for (int y = 0; y < maze.Height; y++) 
-            {
-                for(int x = 0; x < maze.Width; x++) 
-                {
-                    var wall = maze.HasWall(new Vector(x, y));
+            var sb = new StringBuilder();
+            char empty = ' ';
+            char wall = '#';
 
-                    Console.Write(wall ? Wall : Empty);
+            for (int row = 0; row < maze.Height; row++)
+            {
+                for (int column = 0; column < maze.Width; column++)
+                {
+                    var point = new Vector(column, row);
+                    var ch = maze.HasWall(point) ? wall : empty;
+                    sb.Append(ch);
                 }
+                sb.AppendLine();
             }
+
+            Console.WriteLine(sb.ToString());
         }
 
         private void DrawExits(Maze maze)
@@ -53,6 +67,7 @@ namespace Maze_Example
         {
             player.Position.SetCursor();
             Console.Write(Player);
+            lastPlayerPosition = player.Position;
         }
     }
 }
