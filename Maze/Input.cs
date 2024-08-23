@@ -47,7 +47,9 @@ namespace Maze_Example
 
         public static bool ReadDialog(string question)
         {
+            const StringComparison comparisonType = StringComparison.InvariantCultureIgnoreCase;
             const string error = "Ошибка при вводе ответа.";
+
             string yes = ((char)InputConfig.Yes).ToString();
             string no = ((char)InputConfig.No).ToString();
             
@@ -58,7 +60,7 @@ namespace Maze_Example
             {
                 Console.Write(question);
                 string input = Console.ReadLine();
-                correctValue = input.Equals(yes) || input.Equals(no);
+                correctValue = Yes(input) || No(input);
 
                 if (!correctValue)
                 {
@@ -66,12 +68,22 @@ namespace Maze_Example
                 }
                 else
                 {
-                    value = input.Equals(yes);
+                    value = Yes(input);
                 }
 
             } while (!correctValue);
 
             return value;
+
+            bool Yes(string str)
+            {
+                return str.Equals(yes, comparisonType);
+            }
+
+            bool No(string str)
+            {
+                return str.Equals(no, comparisonType);
+            }
         }
     }
 }

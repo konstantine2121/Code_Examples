@@ -57,6 +57,10 @@
                     _game._running = false;
                     _game.Exit();
                 }
+                else 
+                {
+                    _game._drawer.ClearScene();
+                }
 
                 return true;
             }
