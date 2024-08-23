@@ -2,12 +2,18 @@
 {
     public partial class Game : IDisposable
     {
+        #region Constants
+
         private const string MapsDirectory = "Maps";
         private const string MapExtension = ".txt";
         
         private const int MillisecondsTimeout = 200;
 
-        private MazeDrawer _drawer;
+        #endregion Constants
+
+        #region Fields
+
+        private Drawer _drawer;
         private InputHandler _inputHandler;
 
         private Maze _maze;
@@ -17,13 +23,40 @@
         private string[] _levels;
         private int _levelIndex = -1;
 
+        #endregion Fields
+
+        #region Ctor
+
         public Game()
         {
             _inputHandler = new InputHandler(this);
-            _drawer = new MazeDrawer();
+            _drawer = new Drawer();
         }
 
+        #endregion Ctor
+
+        #region Methods
+
+        #region Public 
+
         public void Start()
+        {
+            Initialize();
+            RunGameCycle();
+        }
+
+        public void Exit()
+        {
+            Dispose();
+            Environment.Exit(0);
+            Console.ReadKey();
+        }
+
+        #endregion Public 
+
+        #region Initialization
+
+        private void Initialize()
         {
             //load map / 1st map
             try
@@ -39,6 +72,57 @@
 
                 Exit();
             }
+        }
+
+        /// <exception cref="DirectoryNotFoundException"></exception>
+        /// <exception cref="InvalidDataException"></exception>
+        private void LoadMaps()
+        {
+            var pathToMaps = Path.Combine(Directory.GetCurrentDirectory(), MapsDirectory);
+
+            if (!Directory.Exists(pathToMaps))
+            {
+                throw new DirectoryNotFoundException($"Указанная папка не найдена '{pathToMaps}'. Проверьте путь в папке с картами");
+            }
+
+            var dirInfo = new DirectoryInfo(pathToMaps);
+            var files = dirInfo.GetFiles();
+
+            var maps = files.Where(file => file.Extension.Equals(MapExtension)).Select(file => file.FullName);
+
+            if (!maps.Any())
+            {
+                throw new InvalidDataException($"Карты не найдены: '{pathToMaps}'");
+            }
+
+            _levels = maps.ToArray();
+        }
+
+        /// <exception cref="InvalidOperationException"></exception>
+        private void SwitchToNextMap()
+        {
+            if (!_levels.Any())
+            {
+                throw new InvalidOperationException("No levels to swicth");
+            }
+
+            _levelIndex++;
+
+            if (_levelIndex >= _levels.Length)
+            {
+                _levelIndex = 0;
+            }
+
+            _maze = MazeLoader.Load(_levels[_levelIndex]);
+            _player = new Player(_maze.PlayerStart);
+        }
+
+        #endregion Initialization
+
+        #region GameCore
+
+        private void RunGameCycle()
+        {
 
             //run game cycle
             _running = true;
@@ -66,53 +150,7 @@
             _drawer.Draw(_maze, _player);
         }
 
-        /// <summary>
-        /// Загрузка карт
-        /// </summary>
-        /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="InvalidDataException"></exception>
-        public void LoadMaps()
-        {
-            var pathToMaps = Path.Combine(Directory.GetCurrentDirectory(), MapsDirectory);
-
-            if (!Directory.Exists(pathToMaps))
-            {
-                throw new DirectoryNotFoundException($"Указанная папка не найдена '{pathToMaps}'. Проверьте путь в папке с картами");
-            }
-
-            var dirInfo = new DirectoryInfo(pathToMaps);
-            var files = dirInfo.GetFiles();
-
-            var maps = files.Where(file => file.Extension.Equals(MapExtension)).Select(file => file.FullName);
-
-            if (!maps.Any())
-            {
-                throw new InvalidDataException($"Карты не найдены: '{pathToMaps}'");
-            }
-
-            _levels = maps.ToArray();
-        }
-
-        /// <exception cref="InvalidOperationException"></exception>
-        public void SwitchToNextMap()
-        {
-            if (!_levels.Any())
-            {
-                throw new InvalidOperationException("No levels to swicth");
-            }
-
-            _levelIndex++;
-
-            if (_levelIndex >= _levels.Length)
-            {
-                _levelIndex = 0;
-            }
-
-            _maze = MazeLoader.Load(_levels[_levelIndex]);
-            _player = new Player(_maze.PlayerStart);
-        }
-
-        public void PerformStep()
+        private void PerformStep()
         {
             //check playerPos
             //               \ if onExit -> show congratulations message, then wait input and load next map
@@ -151,15 +189,14 @@
             return false;
         }
 
-        public void Exit()
-        {
-            Dispose();
-            Environment.Exit(0);
-            Console.ReadKey();
-        }
+        #endregion GameCore
+
+        #region IDisposable
 
         public void Dispose()
         {
+            _running = false;
+
             _drawer = null;
             _inputHandler?.Dispose();
             _inputHandler = null;
@@ -170,8 +207,8 @@
             _player = null;
         }
 
-        #region Helpers
+        #endregion IDisposable
 
-        #endregion Helpers
+        #endregion Methods
     }
 }

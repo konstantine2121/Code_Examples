@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Maze_Example
 {
-    internal class MazeDrawer
+    internal class Drawer
     {
         private const string Empty = " ";
         private const string Wall = "█";
@@ -37,15 +37,13 @@ namespace Maze_Example
             Console.SetCursorPosition(0, 0);
 
             var sb = new StringBuilder();
-            char empty = ' ';
-            char wall = '#';
-
+            
             for (int row = 0; row < maze.Height; row++)
             {
                 for (int column = 0; column < maze.Width; column++)
                 {
                     var point = new Vector(column, row);
-                    var ch = maze.HasWall(point) ? wall : empty;
+                    var ch = maze.HasWall(point) ? Wall : Empty;
                     sb.Append(ch);
                 }
                 sb.AppendLine();
