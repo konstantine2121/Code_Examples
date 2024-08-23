@@ -51,7 +51,7 @@
             {
                 _game._maze.MoveCursorUnderMaze();
 
-                var exit = Input.ReadDialog("Вы хотите выйти? [Y,N]");
+                var exit = Input.ReadDialog($"Вы хотите выйти? [{InputConfig.Yes},{InputConfig.No}]: ");
                 if (exit)
                 {
                     _game._running = false;
