@@ -113,6 +113,7 @@
                 _levelIndex = 0;
             }
 
+            _drawer.ClearScene();
             _maze = MazeLoader.Load(_levels[_levelIndex]);
             _player = new Player(_maze.PlayerStart);
         }
@@ -196,7 +197,7 @@
         public void Dispose()
         {
             _running = false;
-
+            _drawer.ClearScene();
             _drawer = null;
             _inputHandler?.Dispose();
             _inputHandler = null;
