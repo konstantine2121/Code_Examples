@@ -5,11 +5,21 @@
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
 
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("Привет мир!");
+            if (args.Length > 0)
+            {
+                //Console.WriteLine("Привет " + args[0]); Старая
+                Console.WriteLine($"Привет {args[0]}");// Интерполяция строк
+            }
+            else
+            {
+                Console.WriteLine("Привет Неизвестный пользователь!");
+            }
+
+            Console.ReadLine();
         }
     }
 }

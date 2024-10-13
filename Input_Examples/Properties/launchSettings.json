@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Input_Examples": {
+      "commandName": "Project",
+      "commandLineArgs": "Петя"
+    }
+  }
+}
