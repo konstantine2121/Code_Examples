@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maze_Example", "Maze\Maze_E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket_Example", "Basket_Example\Basket_Example.csproj", "{539A40EF-F0F5-4544-ABB7-F5A2E05529EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input_Examples", "Input_Examples\Input_Examples.csproj", "{08C74784-83DB-4973-AB76-F4C63318EF9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command_Line_Arguments_Examples", "Input_Examples\Command_Line_Arguments_Examples.csproj", "{08C74784-83DB-4973-AB76-F4C63318EF9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
   "profiles": {
     "Input_Examples": {
       "commandName": "Project",
-      "commandLineArgs": "Петя"
+      "commandLineArgs": "Петя 13,2"
     }
   }
 }
