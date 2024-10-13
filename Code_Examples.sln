@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maze_Example", "Maze\Maze_E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket_Example", "Basket_Example\Basket_Example.csproj", "{539A40EF-F0F5-4544-ABB7-F5A2E05529EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Command_Line_Arguments_Examples", "Input_Examples\Command_Line_Arguments_Examples.csproj", "{08C74784-83DB-4973-AB76-F4C63318EF9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command_Line_Arguments_Examples", "Command_Line_Arguments_Examples\Command_Line_Arguments_Examples.csproj", "{08C74784-83DB-4973-AB76-F4C63318EF9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input_Examples", "Input_Examples\Input_Examples.csproj", "{89363369-71AC-4D2E-9EEF-0DF640977A55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{08C74784-83DB-4973-AB76-F4C63318EF9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08C74784-83DB-4973-AB76-F4C63318EF9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08C74784-83DB-4973-AB76-F4C63318EF9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
