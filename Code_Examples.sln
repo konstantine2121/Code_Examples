@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket_Example", "Basket_Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Command_Line_Arguments_Examples", "Command_Line_Arguments_Examples\Command_Line_Arguments_Examples.csproj", "{08C74784-83DB-4973-AB76-F4C63318EF9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Input_Examples", "Input_Examples\Input_Examples.csproj", "{89363369-71AC-4D2E-9EEF-0DF640977A55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Input_Examples", "Input_Examples\Input_Examples.csproj", "{89363369-71AC-4D2E-9EEF-0DF640977A55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrays_Example", "Arrays_Example\Arrays_Example.csproj", "{8AB0BB5D-EA33-40C9-9B38-C8A3CB2917AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89363369-71AC-4D2E-9EEF-0DF640977A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB0BB5D-EA33-40C9-9B38-C8A3CB2917AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB0BB5D-EA33-40C9-9B38-C8A3CB2917AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB0BB5D-EA33-40C9-9B38-C8A3CB2917AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB0BB5D-EA33-40C9-9B38-C8A3CB2917AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
