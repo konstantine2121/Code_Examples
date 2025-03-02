@@ -20,7 +20,6 @@
             return sideA * height / 2.0;
         }
 
-
         public double UseCalculateDelegate(CalculateSquareDelegate calculate)
         {
             double result1 = calculate(12, 32);         // Равнозначно
@@ -240,7 +239,6 @@
             Incr incr = count => count + 2;
             incr = count => count + 2;
             incr = Count;
-
         }
 
         //count => count + 2
