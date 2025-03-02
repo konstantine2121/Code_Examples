@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-
-namespace Delegate_Example
+﻿namespace Delegate_Example
 {
     internal class Program
     {
@@ -19,12 +17,14 @@ namespace Delegate_Example
             //var callbackExample = new CallbackExample();
             //callbackExample.CallExample();
 
-            LambdaExample lambdaExample = new LambdaExample();
-            lambdaExample.CallExample();
-            lambdaExample.CallExample();
+            //LambdaExample lambdaExample = new LambdaExample();
+            //lambdaExample.CallExample();
+            //lambdaExample.CallExample();
+
+            FluentBuilderUsage fluentBuilderUsage = new FluentBuilderUsage();
+            fluentBuilderUsage.Run();
         }
     }
-
 
     class DelegateExample1
     {
